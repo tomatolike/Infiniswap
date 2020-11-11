@@ -295,7 +295,7 @@ static struct block_device *stackbd_bdev_open(char dev_path[])
         struct block_device *bdev_raw = lookup_bdev(dev_path);
    #endif 
 	*/
-    struct block_device *bdev_raw = LOOKUP_BDEV(dev_path);
+    struct block_device *bdev_raw = LOOKUP_BDEV(dev_path,0);
 
     printk("Opened %s\n", dev_path);
     if (IS_ERR(bdev_raw))
