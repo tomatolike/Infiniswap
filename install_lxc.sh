@@ -16,5 +16,5 @@ echo ${lxcip} > ~/lxcip.txt
 sshpass -p ubuntu ssh ubuntu@${lxcip} -f 'memcached -d -m 65535'
 
 # prepare experiment file
-echo "~/Infiniswap/memcached_bench/memcached -s "${lxcip}":11211 -F bost.cfg -x 3000000" > ~/bost.sh
-echo "~/Infiniswap/memcached_bench/memcached -s "${lxcip}":11211 -F SYS.cfg -x 10000000" > ~/SYS.sh
+echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F bost.cfg -x 3000000" > ~/bost.sh
+echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F SYS.cfg -x 10000000" > ~/SYS.sh
