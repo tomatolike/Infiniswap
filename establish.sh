@@ -20,10 +20,12 @@
 # sudo make install
 
 # instal essentials
+cd ~
 sudo apt-get update
 sudo apt-get install -y libevent-dev lxc sshpass
 
 # build Infiniswap
+cd ~/Infiniswap
 client_ip=$1
 
 if [$# -eq 0]
