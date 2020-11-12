@@ -10,7 +10,7 @@ sudo lxc-create -n memcached -f memcached.conf -t ubuntu
 sudo lxc-start -d -n memcached --console-log memcached.log
 echo "lxc started, wait for several seconds"
 sleep 5
-sudo lxc-attach -n memcached -- /bin/bash -c "sudo apt-get update && sudo apt-get install -y memcached"
+sudo lxc-attach -n memcached -- /bin/bash -c "sudo apt-get update && sudo apt-get install -y wget gcc g++ libevent-dev cmake && wget http://memcached.org/files/old/memcached-1.4.14.tar.gz && tar -zxvf memcached-1.4.14.tar.gz && cd memcached-1.4.14 && ./configure && make && sudo make install"
 lxcip=$(sudo lxc-attach -n memcached -- /bin/bash -c "ifconfig | egrep '10.0.3' | cut -d : -f 2 | cut -d ' ' -f 1 | head -n 1")
 echo ${lxcip} > ~/lxcip.txt
 echo "wait for several seconds again"
