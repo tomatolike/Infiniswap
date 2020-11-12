@@ -15,7 +15,7 @@ lxcip=$(sudo lxc-attach -n memcached -- /bin/bash -c "ifconfig | egrep '10.0.3' 
 echo ${lxcip} > ~/lxcip.txt
 echo "wait for several seconds again"
 sleep 5
-sshpass -p ubuntu ssh ubuntu@${lxcip} -f 'memcached -d -m 65535'
+sshpass -p ubuntu ssh -o "StrictHostKeyChecking no" ubuntu@${lxcip} -f 'memcached -d -m 65535'
 
 # prepare experiment file
 echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/bost.cfg -x 3000000" > ~/bost.sh
