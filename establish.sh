@@ -91,8 +91,11 @@ sleep 5
 sudo lxc-attach -n memcached -- /bin/bash -c "sudo apt-get update && sudo apt-get install -y memcached"
 lxcip=$(sudo lxc-attach -n memcached -- /bin/bash -c "ifconfig | egrep '10.0.3' | cut -d : -f 2 | cut -d ' ' -f 1 | head -n 1")
 echo ${lxcip} > ~/lxcip.txt
-sshpass -p ubuntu ssh ubuntu@${lxcip} -f 'memcached -d -m 65535'
+echo "wait for several seconds again"
+sleep 5
+sshpass -p ubuntu ssh -o "StrictHostKeyChecking no" ubuntu@${lxcip} -f 'memcached -d -m 65535'
 
 # prepare experiment file
-echo "~/Infiniswap/memcached_bench/memcached -s "${lxcip}":11211 -F bost.cfg -x 3000000" > ~/bost.sh
-echo "~/Infiniswap/memcached_bench/memcached -s "${lxcip}":11211 -F SYS.cfg -x 10000000" > ~/SYS.sh
+echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/bost.cfg -x 3000000" > ~/bost.sh
+echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/SYS.cfg -x 10000000" > ~/SYS.sh
+
