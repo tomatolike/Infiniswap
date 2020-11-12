@@ -26,7 +26,7 @@ sudo apt-get install -y libevent-dev lxc sshpass
 # build Infiniswap
 
 ## setup infiniband NIC
-local_ip=$(ifconfig | egrep '192.168.0' | awk '{print $2}' | cut -d : -f 2)
+local_ip=$(ifconfig | egrep '192.168.0' | awk '{print $2}' | cut -d : -f 2 | head -n 1)
 echo ${local_ip}
 cd setup
 sudo bash ib_setup.sh ${local_ip}
