@@ -26,6 +26,12 @@ sudo apt-get install -y libevent-dev lxc sshpass
 # build Infiniswap
 client_ip=$1
 
+if [$# -eq 0]
+then
+    echo "Need client ip"
+    exit 1
+fi
+
 ## setup infiniband NIC
 local_ip=$(ifconfig | egrep '192.168.0' | awk '{print $2}' | cut -d : -f 2 | head -n 1)
 echo ${local_ip}
@@ -79,6 +85,8 @@ echo 'test' > memcached.log
 sudo lxc-create -n memcached -f memcached.conf -t ubuntu
 sudo lxc-start -d -n memcached --console-log memcached.log
 sudo lxc-attach -n memcached -- /bin/bash -c "sudo apt-get update && sudo apt-get install -y memcached"
+echo "lxc started, wait for several seconds"
+sleep 5
 lxcip=$(sudo lxc-attach -n memcached -- /bin/bash -c "ifconfig | egrep '10.0.3' | cut -d : -f 2 | cut -d ' ' -f 1 | head -n 1")
 echo ${lxcip} > ~/lxcip.txt
 sshpass -p ubuntu ssh ubuntu@${lxcip} -f 'memcached -d -m 65535'
