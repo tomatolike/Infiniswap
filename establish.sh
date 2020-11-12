@@ -43,7 +43,7 @@ bash install.sh bd
 
 ## prepare client list
 newline=$'\n'
-list='1'${newline}${client_ip}
+list='1'${newline}${client_ip}:9400
 echo "${list}" > portal.list
 
 ## disable existing swap partitions
