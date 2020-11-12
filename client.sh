@@ -36,4 +36,4 @@ bash install.sh daemon
 
 ## start daemon
 cd ../infiniswap_daemon
-bash infiniswap-daemon ${local_ip} 9400
+./infiniswap-daemon ${local_ip} 9400
