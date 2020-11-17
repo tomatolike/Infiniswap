@@ -9,7 +9,7 @@ fi
 ## setup infiniband NIC
 local_ip=$(ifconfig | egrep '192.168.0' | awk '{print $2}' | cut -d : -f 2 | head -n 1)
 echo ${local_ip}
-cd setup
+cd Infiniswap/setup
 sudo bash ib_setup.sh ${local_ip}
 
 ## install infiniswap block device
