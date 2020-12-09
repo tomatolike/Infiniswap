@@ -649,6 +649,7 @@ void send_single_mr(void *context, int client_chunk_index)
 {
   struct connection *conn = (struct connection *)context;
   int i = 0;
+  int ok = 0;
 
   conn->send_msg->size_gb = client_chunk_index;
   for (i=0; i<MAX_FREE_MEM_GB;i++){
@@ -662,11 +663,14 @@ void send_single_mr(void *context, int client_chunk_index)
       conn->send_msg->buf[i] = htonll((uint64_t)session.rdma_remote.mr_list[i]->addr);
       conn->send_msg->rkey[i] = htonl((uint64_t)session.rdma_remote.mr_list[i]->rkey);
       printf("RDMA addr %llx  rkey %x\n", (unsigned long long)conn->send_msg->buf[i], conn->send_msg->rkey[i]);
+      ok = 1;
       break;
     }
   } 
-  session.rdma_remote.mapped_size += 1;
-  conn->mapped_chunk_size += 1;
+  if(ok == 1){
+    session.rdma_remote.mapped_size += 1;
+    conn->mapped_chunk_size += 1;
+  }
   conn->send_msg->type = INFO_SINGLE;
 
   send_message(conn);
@@ -695,8 +699,8 @@ void send_mr(void *context, int size)
       }
     }
   } 
-  session.rdma_remote.mapped_size += size;
-  conn->mapped_chunk_size += size;
+  session.rdma_remote.mapped_size += j;
+  conn->mapped_chunk_size += j;
   conn->send_msg->type = INFO;
 
   send_message(conn);
