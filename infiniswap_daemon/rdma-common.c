@@ -436,7 +436,7 @@ void* free_mem(void *data)
         evict_hit_count = 0;
         //evict  down_threshold - free_mem
         stop_size_g = FREE_MEM_EVICT_THRESHOLD - last_free_mem_g;
-        printf(", evict %d GB ", stop_size_g);
+        printf(", evict %d GB %d %d\n", stop_size_g, FREE_MEM_EVICT_THRESHOLD, last_free_mem_g);
         if (session.rdma_remote.size_gb < stop_size_g){
           stop_size_g = session.rdma_remote.size_gb;
         }
