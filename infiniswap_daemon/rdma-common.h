@@ -43,8 +43,8 @@
   #define MAX_FREE_MEM_GB USER_MAX_REMOTE_MEMORY //for local memory management
   #define MAX_MR_SIZE_GB MAX_FREE_MEM_GB //for msg passing
 #else
-  #define MAX_FREE_MEM_GB 32 //for local memory management
-  #define MAX_MR_SIZE_GB 32 //for msg passing
+  #define MAX_FREE_MEM_GB 64 //for local memory management
+  #define MAX_MR_SIZE_GB 64 //for msg passing
 #endif
 
 

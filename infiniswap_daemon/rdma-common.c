@@ -219,16 +219,16 @@ void rdma_session_init(struct rdma_session *sess){
     sess->rdma_remote.malloc_map[i] = CHUNK_EMPTY;
   }
 
-  if (free_mem_g > FREE_MEM_EXPAND_THRESHOLD){
-    free_mem_g -= (FREE_MEM_EVICT_THRESHOLD + FREE_MEM_EXPAND_THRESHOLD) / 2;
-  } else if (free_mem_g > FREE_MEM_EVICT_THRESHOLD){
-    free_mem_g  -= FREE_MEM_EVICT_THRESHOLD;
-  }else{
-    free_mem_g = 0;
-  }
-  if (free_mem_g > MAX_FREE_MEM_GB) {
-    free_mem_g = MAX_FREE_MEM_GB;
-  }
+  // if (free_mem_g > FREE_MEM_EXPAND_THRESHOLD){
+  //   free_mem_g -= (FREE_MEM_EVICT_THRESHOLD + FREE_MEM_EXPAND_THRESHOLD) / 2;
+  // } else if (free_mem_g > FREE_MEM_EVICT_THRESHOLD){
+  //   free_mem_g  -= FREE_MEM_EVICT_THRESHOLD;
+  // }else{
+  //   free_mem_g = 0;
+  // }
+  // if (free_mem_g > MAX_FREE_MEM_GB) {
+  //   free_mem_g = MAX_FREE_MEM_GB;
+  // }
 
   for (i=0; i < free_mem_g; i++){
     posix_memalign((void **)&(sess->rdma_remote.region_list[i]), page_size, ONE_GB);

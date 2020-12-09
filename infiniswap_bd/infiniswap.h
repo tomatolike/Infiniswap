@@ -265,7 +265,7 @@ enum mem_type {
 #ifdef USER_MAX_REMOTE_MEMORY
 	#define MAX_MR_SIZE_GB USER_MAX_REMOTE_MEMORY
 #else
-	#define MAX_MR_SIZE_GB 32
+	#define MAX_MR_SIZE_GB 64
 #endif
 
 struct IS_rdma_info {
