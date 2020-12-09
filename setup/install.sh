@@ -20,7 +20,7 @@ bio_page_cap=32
 
 #max remote memory size from one server 
 #(MAX_MR_SIZE_GB), default is 32
-max_remote_memory=32    #also for daemon
+max_remote_memory=64    #also for daemon
 
 #stackbd (backup) disk size, also the total size of remote memory of this bd
 #(STACKBD_SIZE), default is 12
@@ -51,7 +51,7 @@ max_client=32
 
 #lower threshold of host free memory to evict remote memory chunks
 #(FREE_MEM_EVICT_THRESHOLD), default is 8
-remote_memory_evict=8
+remote_memory_evict=2
 
 #limit of hitting evict_threshold before triggering eviction
 #(MEM_EVICT_HIT_THRESHOLD), default is 1
@@ -59,7 +59,7 @@ evict_hit_limit=1
 
 #upper threshold of host free memory to expand remote memory chunks
 #(FREE_MEM_EXPAND_THRESHOLD), default is 16
-remote_memory_expand=16
+remote_memory_expand=64
 
 #limit of hitting expand_threshold before triggering expansion
 #(MEM_EXPAND_HIT_THRESHOLD), default is 20
