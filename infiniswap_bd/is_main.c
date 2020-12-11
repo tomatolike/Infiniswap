@@ -386,9 +386,9 @@ int IS_transfer_chunk(struct IS_file *xdev, struct kernel_cb *cb, int cb_index, 
 	int cpu, retval = 0;
 
 	cpu = get_cpu();
-	pr_err("GO TEST\n");
+	// pr_err("GO TEST\n");
 	// IS_send_test(cb);
-	pr_err("OUT TEST\n");
+	// pr_err("OUT TEST\n");
 	
 	if (write){
 		retval = IS_rdma_write(IS_conn, cb, cb_index, chunk_index, chunk, offset, len, req, q); 
