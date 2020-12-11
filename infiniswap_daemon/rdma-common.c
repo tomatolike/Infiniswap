@@ -524,9 +524,9 @@ void on_completion(struct ibv_wc *wc)
     switch (conn->recv_msg->type){
       case TEST:
         printf("%s, TEST \n", __func__);
-        // atomic_set(&conn->cq_qp_state, CQ_QP_BUSY);
+        atomic_set(&conn->cq_qp_state, CQ_QP_BUSY);
         // send_free_mem_size(conn);
-        // post_receives(conn);
+        post_receives(conn);
         break;
       case QUERY:
         printf("%s, QUERY \n", __func__);
