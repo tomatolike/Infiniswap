@@ -362,6 +362,20 @@ static int IS_send_done(struct kernel_cb *cb, int num)
 	return 0;
 }
 
+static int IS_send_test(struct kernel_cb *cb)
+{
+	int ret = 0;
+	struct ib_send_wr * bad_wr;
+
+	cb->send_buf.type = TEST;
+	ret = ib_post_send(cb->qp, &cb->sq_wr, &bad_wr);
+	if (ret) {
+		printk(KERN_ERR PFX "TEST MSG send error %d\n", ret);
+		return ret;
+	}
+	return 0;
+}
+
 int IS_transfer_chunk(struct IS_file *xdev, struct kernel_cb *cb, int cb_index, int chunk_index, struct remote_chunk_g *chunk, unsigned long offset,
 		  unsigned long len, int write, struct request *req,
 		  struct IS_queue *q)
@@ -370,8 +384,9 @@ int IS_transfer_chunk(struct IS_file *xdev, struct kernel_cb *cb, int cb_index, 
 	int cpu, retval = 0;
 
 	cpu = get_cpu();
-	
 
+	IS_send_test(cb);
+	
 	if (write){
 		retval = IS_rdma_write(IS_conn, cb, cb_index, chunk_index, chunk, offset, len, req, q); 
 		if (unlikely(retval)) {

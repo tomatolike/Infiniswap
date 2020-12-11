@@ -528,6 +528,12 @@ void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode == IBV_WC_RECV){ //Recv
     switch (conn->recv_msg->type){
+      case TEST:
+        printf("%s, TEST \n", __func__);
+        // atomic_set(&conn->cq_qp_state, CQ_QP_BUSY);
+        // send_free_mem_size(conn);
+        // post_receives(conn);
+        break;
       case QUERY:
         printf("%s, QUERY \n", __func__);
         atomic_set(&conn->cq_qp_state, CQ_QP_BUSY);
