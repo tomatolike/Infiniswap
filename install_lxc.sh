@@ -6,6 +6,8 @@ cd lxc
 cp /etc/lxc/default.conf ./memcached.conf
 echo 'lxc.cgroup.memory.limit_in_bytes = 4G' >> memcached.conf
 echo 'test' > memcached.log
+sudo lxc-stop -n memcached
+sudo lxc-destroy -n memcached
 sudo lxc-create -n memcached -f memcached.conf -t ubuntu
 sudo lxc-start -d -n memcached --console-log memcached.log
 echo "lxc started, wait for several seconds"
