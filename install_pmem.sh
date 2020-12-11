@@ -33,7 +33,7 @@ sudo dpkg -i libdaxctl-dev_67-1_amd64.deb
 #install pmem
 cd ~
 git clone https://github.com/pmem/pmdk.git
-cd pmem
+cd pmdk
 make
 sudo make install
 
@@ -45,3 +45,4 @@ git checkout tags/1.7
 make
 sudo make install
 
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
