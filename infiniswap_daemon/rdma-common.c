@@ -430,7 +430,7 @@ void* free_mem(void *data)
     filtered_free_mem_g = (int)(CURR_FREE_MEM_WEIGHT * free_mem_g + last_free_mem_g * last_free_mem_weight); 
     server_count = 0;
     for (i=0;i<MAX_CLIENT; i++){
-      if(sess->conns_state[i] == CONN_CONNECTED){
+      if(session->conns_state[i] == CONN_CONNECTED){
         server_count+=1;
       }
     }
