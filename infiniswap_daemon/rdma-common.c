@@ -435,7 +435,7 @@ void* free_mem(void *data)
       }
     }
     // printf("%s, free_mem_g %d GB, last_free_mem_g %d GB, filtered_free_mem_g %d GB, FREE_MEM_EVICT_THRESHOLD %d GB\n",__func__,free_mem_g,last_free_mem_g,filtered_free_mem_g,FREE_MEM_EVICT_THRESHOLD);
-    printf("Free Mem Left: %d GB, Server Conn Num: %d\n",filtered_free_mem_g,server_count);
+    printf("Mem Usage: %d GB, Server Conn Num: %d\n",session.rdma_remote.mapped_size,server_count);
     last_free_mem_g = filtered_free_mem_g;
     if (filtered_free_mem_g < FREE_MEM_EVICT_THRESHOLD){
       evict_hit_count += 1;
