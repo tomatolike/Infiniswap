@@ -368,7 +368,9 @@ static int IS_send_test(struct kernel_cb *cb)
 	struct ib_send_wr * bad_wr;
 
 	cb->send_buf.type = TEST;
+	pr_err("SEND TEST\n");
 	ret = ib_post_send(cb->qp, &cb->sq_wr, &bad_wr);
+	pr_err("SEND TEST DONE\n");
 	if (ret) {
 		printk(KERN_ERR PFX "TEST MSG send error %d\n", ret);
 		return ret;
@@ -384,8 +386,9 @@ int IS_transfer_chunk(struct IS_file *xdev, struct kernel_cb *cb, int cb_index, 
 	int cpu, retval = 0;
 
 	cpu = get_cpu();
-
+	pr_err("GO TEST\n");
 	IS_send_test(cb);
+	pr_err("OUT TEST\n");
 	
 	if (write){
 		retval = IS_rdma_write(IS_conn, cb, cb_index, chunk_index, chunk, offset, len, req, q); 

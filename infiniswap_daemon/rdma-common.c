@@ -418,7 +418,7 @@ void* free_mem(void *data)
   float last_free_mem_weight = 1 - CURR_FREE_MEM_WEIGHT;
   int stop_size_g;
   int expand_size_g;
-  int i, j, server_count;
+  int i, j;
 
   rdma_session_init(&session);
   last_free_mem_g = (int)(get_free_mem() / ONE_MB);
@@ -428,14 +428,8 @@ void* free_mem(void *data)
     free_mem_g = (int)(get_free_mem() / ONE_MB);
     //need a filter
     filtered_free_mem_g = (int)(CURR_FREE_MEM_WEIGHT * free_mem_g + last_free_mem_g * last_free_mem_weight); 
-    server_count = 0;
-    for (i=0;i<MAX_CLIENT; i++){
-      if(session.conns_state[i] == CONN_CONNECTED){
-        server_count+=1;
-      }
-    }
     // printf("%s, free_mem_g %d GB, last_free_mem_g %d GB, filtered_free_mem_g %d GB, FREE_MEM_EVICT_THRESHOLD %d GB\n",__func__,free_mem_g,last_free_mem_g,filtered_free_mem_g,FREE_MEM_EVICT_THRESHOLD);
-    printf("Mem Usage: %d GB, Server Conn Num: %d\n",session.rdma_remote.mapped_size,server_count);
+    printf("Mem Usage: %d GB, Server Conn Num: %d\n",session.rdma_remote.mapped_size,session.conn_num);
     last_free_mem_g = filtered_free_mem_g;
     if (filtered_free_mem_g < FREE_MEM_EVICT_THRESHOLD){
       evict_hit_count += 1;
