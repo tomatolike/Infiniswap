@@ -387,7 +387,7 @@ int IS_transfer_chunk(struct IS_file *xdev, struct kernel_cb *cb, int cb_index, 
 
 	cpu = get_cpu();
 	pr_err("GO TEST\n");
-	IS_send_test(cb);
+	// IS_send_test(cb);
 	pr_err("OUT TEST\n");
 	
 	if (write){
