@@ -428,6 +428,7 @@ void* free_mem(void *data)
     free_mem_g = (int)(get_free_mem() / ONE_MB);
     //need a filter
     filtered_free_mem_g = (int)(CURR_FREE_MEM_WEIGHT * free_mem_g + last_free_mem_g * last_free_mem_weight); 
+    printf("%s, free_mem_g %d GB, last_free_mem_g %d GB, filtered_free_mem_g %d GB, FREE_MEM_EVICT_THRESHOLD %d GB\n",__func__,free_mem_g,last_free_mem_g,filtered_free_mem_g,FREE_MEM_EVICT_THRESHOLD);
     last_free_mem_g = filtered_free_mem_g;
     if (filtered_free_mem_g < FREE_MEM_EVICT_THRESHOLD){
       evict_hit_count += 1;
