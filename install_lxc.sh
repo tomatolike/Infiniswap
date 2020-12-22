@@ -22,3 +22,4 @@ sshpass -p ubuntu ssh -o "StrictHostKeyChecking no" ubuntu@${lxcip} -f 'memcache
 # prepare experiment file
 echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/bost.cfg -x 3000000" > ~/bost.sh
 echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/SYS.cfg -x 10000000" > ~/SYS.sh
+echo "~/Infiniswap/memcached_bench/memaslap -s "${lxcip}":11211 -F ~/Infiniswap/memcached_bench/temp.cfg -x 10000000" > ~/temp.sh
