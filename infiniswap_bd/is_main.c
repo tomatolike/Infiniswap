@@ -1297,6 +1297,7 @@ static int rdma_trigger(void *data)
 			if (filtered_ops > trigger_threshold) {
 				if (atomic_read(&IS_sess->trigger_enable) == TRIGGER_ON){
 					if (atomic_read(IS_sess->cb_index_map + i) == NO_CB_MAPPED ){
+						pr_info("RDMA Trigger: Block[%lu] CW[%lu] CR[%lu] CO[%lu] LO[%lu] FO[%lu]\n", i, cur_write_ops, cur_read_ops, cur_ops, IS_sess->last_ops[i], filtered_ops);
 						do {
 							map_res = IS_single_chunk_map(IS_sess, i);
 							map_count += 1;
