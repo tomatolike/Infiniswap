@@ -79,6 +79,7 @@ long get_free_mem(void)
 
 void build_connection(struct rdma_cm_id *id)
 {
+  printf("BUILD CONN START\n");
   int i;
   struct connection *conn;
   struct ibv_qp_init_attr qp_attr;
@@ -122,6 +123,7 @@ void build_connection(struct rdma_cm_id *id)
 
   register_memory(conn);
   post_receives(conn);
+  printf("BUILD CONN END\n");
 }
 
 void build_context(struct ibv_context *verbs)
